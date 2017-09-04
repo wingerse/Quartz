@@ -1,5 +1,5 @@
 ﻿using System;
-using Quartz.Encoding;
+using EncodingLib;
 
 namespace Quartz.Proto
 {
@@ -9,19 +9,19 @@ namespace Quartz.Proto
         {
             var bytes = System.Text.Encoding.UTF8.GetBytes(s);
             primitiveWriter.WriteVarint(bytes.Length);
-            primitiveWriter.WriteBytes(bytes, 0, bytes.Length);
+            primitiveWriter.Write(bytes, 0, bytes.Length);
         }
 
         public static void WriteAngle(this PrimitiveWriter writer, double angle)
         {
-            writer.WriteByte((byte)((Math.Round(angle) % 360) * 256d / 360d));
+            writer.WriteByte((byte)(Math.Round(angle) % 360 * 256d / 360d));
         }
 
-        public static void WriteUUID(this PrimitiveWriter writer, Guid uuid)
+        public static void WriteUuid(this PrimitiveWriter writer, Guid uuid)
         {
             var bytes = uuid.ToByteArray();
             Array.Reverse(bytes);
-            writer.WriteBytes(bytes, 0, bytes.Length);
+            writer.Write(bytes, 0, bytes.Length);
         }
     }
 
@@ -39,11 +39,10 @@ namespace Quartz.Proto
             return reader.ReadByte() * 360d / 256d;
         }
 
-        public static Guid ReadUUID(this PrimitiveReader reader)
+        public static Guid ReadUuid(this PrimitiveReader reader)
         {
             var buf = new byte[16];
-            // since PrimitiveReader wraps a memory stream, Read will return full amount requested.
-            reader.Read(buf, 0, 16);
+            reader.ReadFully(buf, 0, 16);
             Array.Reverse(buf);
             return new Guid(buf);
         }

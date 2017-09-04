@@ -5,9 +5,10 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Encoding" />
+    <ProjectReference Include="..\EncodingLib\EncodingLib.csproj" />
   </ItemGroup>
 </Project>
