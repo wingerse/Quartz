@@ -9,6 +9,11 @@ namespace Quartz.Text.Chat
     public sealed class ChatColor
     {
         private readonly string _value;
+        
+        private ChatColor(string value)
+        {
+            _value = value;
+        }
 
         public static readonly ChatColor Black = new ChatColor("black");
         public static readonly ChatColor DarkBlue = new ChatColor("dark_blue");
@@ -37,11 +42,6 @@ namespace Quartz.Text.Chat
         static ChatColor()
         {
             ReverseMapping = Values.ToDictionary(e => e._value);
-        }
-
-        private ChatColor(string value)
-        {
-            _value = value;
         }
 
         public override string ToString() => _value;

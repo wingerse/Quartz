@@ -23,17 +23,17 @@ namespace Quartz.Text.Chat
         {
             private readonly string _value;
             
+            private ActionEnum(string value)
+            {
+                _value = value;
+            }
+            
             public static readonly ActionEnum ShowText = new ActionEnum("show_text");
             public static readonly ActionEnum ShowItem = new ActionEnum("show_item");
             public static readonly ActionEnum ShowEntity = new ActionEnum("show_entity");
 
             private static readonly Dictionary<string, ActionEnum> ReverseMapping;
             private static readonly ActionEnum[] Values = {ShowText, ShowItem, ShowEntity};
-            
-            private ActionEnum(string value)
-            {
-                _value = value;
-            }
 
             static ActionEnum()
             {

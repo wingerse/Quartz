@@ -24,6 +24,11 @@ namespace Quartz.Text.Chat
         {
             private readonly string _value;
             
+            private ActionEnum(string value)
+            {
+                _value = value;
+            }
+            
             public static readonly ActionEnum OpenUrl = new ActionEnum("open_url");
             public static readonly ActionEnum RunCommand = new ActionEnum("run_command");
             public static readonly ActionEnum SuggestCommand = new ActionEnum("suggest_command");
@@ -31,11 +36,6 @@ namespace Quartz.Text.Chat
 
             private static readonly Dictionary<string, ActionEnum> ReverseMapping;
             private static readonly ActionEnum[] Values = {OpenUrl, RunCommand, SuggestCommand, ChangePage};
-            
-            private ActionEnum(string value)
-            {
-                _value = value;
-            }
 
             static ActionEnum()
             {
