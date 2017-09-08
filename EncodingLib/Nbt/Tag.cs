@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,32 +12,33 @@ namespace EncodingLib.Nbt
     public abstract class Tag
     {
         public const int MaxNestLevel = 512;
+        internal const byte EndId = 0;
 
         // private constructor so no external class can inherit.
         private Tag()
         {
         }
 
-        internal abstract TypeID ID { get; }
+        internal abstract byte ID { get; }
         internal abstract void Write(PrimitiveWriter writer);
         internal abstract void Read(PrimitiveReader reader, int level);
         public abstract override string ToString();
 
-        internal static Tag CreateTagFromID(TypeID id)
+        internal static Tag CreateTagFromID(byte id)
         {
             switch (id)
             {
-                case TypeID.Byte: return new Byte();
-                case TypeID.Short: return new Short();
-                case TypeID.Int: return new Int();
-                case TypeID.Long: return new Long();
-                case TypeID.Float: return new Float();
-                case TypeID.Double: return new Double();
-                case TypeID.ByteArray: return new ByteArray();
-                case TypeID.String: return new String();
-                case TypeID.List: return new List();
-                case TypeID.Compound: return new Compound();
-                case TypeID.IntArray: return new IntArray();
+                case Byte.Id: return new Byte();
+                case Short.Id: return new Short();
+                case Int.Id: return new Int();
+                case Long.Id: return new Long();
+                case Float.Id: return new Float();
+                case Double.Id: return new Double();
+                case ByteArray.Id: return new ByteArray();
+                case String.Id: return new String();
+                case List.Id: return new List();
+                case Compound.Id: return new Compound();
+                case IntArray.Id: return new IntArray();
                 default:
                     throw new NBTException("Invalid TypeID.");
             }
@@ -49,6 +51,8 @@ namespace EncodingLib.Nbt
 
         public sealed class Byte : Tag
         {
+            internal const int Id = 1;
+            
             public sbyte Value { get; set; }
 
             public static implicit operator sbyte(Byte tag) => tag.Value;
@@ -63,7 +67,7 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.Byte;
+            internal override byte ID => Id;
             internal override void Write(PrimitiveWriter writer) => writer.WriteSByte(Value);
             internal override void Read(PrimitiveReader reader, int _) => Value = reader.ReadSByte();
             public override string ToString() => Value.ToString();
@@ -71,6 +75,8 @@ namespace EncodingLib.Nbt
 
         public sealed class Short : Tag
         {
+            internal const int Id = 2;
+            
             public short Value { get; set; }
 
             public static implicit operator short(Short tag) => tag.Value;
@@ -85,7 +91,7 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.Short;
+            internal override byte ID => Id;
             internal override void Write(PrimitiveWriter writer) => writer.WriteShort(Value);
             internal override void Read(PrimitiveReader reader, int _) => Value = reader.ReadShort();
             public override string ToString() => Value.ToString();
@@ -93,6 +99,8 @@ namespace EncodingLib.Nbt
 
         public sealed class Int : Tag
         {
+            internal const int Id = 3;
+            
             public int Value { get; set; }
             
             public static implicit operator int(Int tag) => tag.Value;
@@ -107,7 +115,7 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.Int;
+            internal override byte ID => Id;
             internal override void Write(PrimitiveWriter writer) => writer.WriteInt(Value);
             internal override void Read(PrimitiveReader reader, int _) => Value = reader.ReadInt();
             public override string ToString() => Value.ToString();
@@ -115,6 +123,8 @@ namespace EncodingLib.Nbt
 
         public sealed class Long : Tag
         {
+            internal const int Id = 4;
+            
             public long Value { get; set; }
             
             public static implicit operator long(Long tag) => tag.Value;
@@ -129,7 +139,7 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.Long;
+            internal override byte ID => Id;
             internal override void Write(PrimitiveWriter writer) => writer.WriteLong(Value);
             internal override void Read(PrimitiveReader reader, int _) => Value = reader.ReadLong();
             public override string ToString() => Value.ToString();
@@ -137,6 +147,8 @@ namespace EncodingLib.Nbt
 
         public sealed class Float : Tag
         {
+            internal const int Id = 5;
+            
             public float Value { get; set; }
             
             public static implicit operator float(Float tag) => tag.Value;
@@ -151,7 +163,7 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.Float;
+            internal override byte ID => Id;
             internal override void Write(PrimitiveWriter writer) => writer.WriteFloat(Value);
             internal override void Read(PrimitiveReader reader, int _) => Value = reader.ReadFloat();
             public override string ToString() => Value.ToString();
@@ -159,6 +171,8 @@ namespace EncodingLib.Nbt
 
         public sealed class Double : Tag
         {
+            internal const int Id = 6;
+            
             public double Value { get; set; }
             
             public static implicit operator double(Double tag) => tag.Value;
@@ -173,7 +187,7 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.Double;
+            internal override byte ID => Id;
             internal override void Write(PrimitiveWriter writer) => writer.WriteDouble(Value);
             internal override void Read(PrimitiveReader reader, int _) => Value = reader.ReadDouble();
             public override string ToString() => Value.ToString();
@@ -181,6 +195,8 @@ namespace EncodingLib.Nbt
 
         public sealed class ByteArray : Tag
         {
+            internal const int Id = 7;
+            
             public byte[] Value { get; set; }
             
             public static implicit operator byte[](ByteArray tag) => tag.Value;
@@ -195,7 +211,7 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.ByteArray;
+            internal override byte ID => Id;
 
             internal override void Write(PrimitiveWriter writer)
             {
@@ -225,6 +241,8 @@ namespace EncodingLib.Nbt
 
         public sealed class String : Tag
         {
+            internal const int Id = 8;
+            
             public string Value { get; set; }
             
             public static implicit operator string(String tag) => tag.Value;
@@ -239,14 +257,16 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.String;
-            internal override void Write(PrimitiveWriter writer) => writer.WriteString(Value);
-            internal override void Read(PrimitiveReader reader, int _) => Value = reader.ReadString();
+            internal override byte ID => Id;
+            internal override void Write(PrimitiveWriter writer) => writer.WriteStringNbt(Value);
+            internal override void Read(PrimitiveReader reader, int _) => Value = reader.ReadStringNbt();
             public override string ToString() => $"\"{Value}\"";
         }
 
         public sealed class List : Tag, IEnumerable<Tag>
         {
+            internal const int Id = 9;
+            
             public List<Tag> Value { get; }
             
             public static implicit operator List<Tag>(List tag) => tag.Value;
@@ -262,24 +282,17 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.List;
+            internal override byte ID => Id;
 
             internal override void Write(PrimitiveWriter writer)
             {
-                if (Value.Any())
-                {
-                    writer.WriteByte((byte) Value[0].ID);
-                }
-                else
-                {
-                    writer.WriteByte((byte) TypeID.End);
-                }
+                writer.WriteByte(Value.Any() ? Value[0].ID : EndId);
                 writer.WriteInt(Value.Count);
                 foreach (var tag in Value)
                 {
                     if (tag.ID != Value[0].ID)
                     {
-                        throw new NBTException("Tags are not the same in the list.");
+                        throw new InvalidOperationException("Tags are not the same in the list.");
                     }
                     tag.Write(writer);
                 }
@@ -293,7 +306,7 @@ namespace EncodingLib.Nbt
                     ThrowMaxNestLevel();
                 }
 
-                var id = (TypeID) reader.ReadByte();
+                var id = reader.ReadByte();
                 var length = reader.ReadInt();
 
                 if (length <= 0)
@@ -336,6 +349,8 @@ namespace EncodingLib.Nbt
 
         public sealed class Compound : Tag
         {
+            internal const int Id = 10;
+            
             public Dictionary<string, Tag> Value { get; }
             
             public static implicit operator Dictionary<string, Tag>(Compound tag) => tag.Value;
@@ -351,17 +366,17 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.Compound;
+            internal override byte ID => Id;
 
             internal override void Write(PrimitiveWriter writer)
             {
                 foreach (var pair in Value)
                 {
-                    writer.WriteByte((byte) pair.Value.ID);
-                    writer.WriteString(pair.Key);
+                    writer.WriteByte(pair.Value.ID);
+                    writer.WriteStringNbt(pair.Key);
                     pair.Value.Write(writer);
                 }
-                writer.WriteByte((byte) TypeID.End);
+                writer.WriteByte(EndId);
             }
 
             internal override void Read(PrimitiveReader reader, int level)
@@ -374,14 +389,14 @@ namespace EncodingLib.Nbt
 
                 while (true)
                 {
-                    var id = (TypeID) reader.ReadByte();
-                    if (id == TypeID.End)
+                    var id = reader.ReadByte();
+                    if (id == EndId)
                     {
                         break;
                     }
 
                     var tag = CreateTagFromID(id);
-                    var name = reader.ReadString();
+                    var name = reader.ReadStringNbt();
                     tag.Read(reader, level);
                     this[name] = tag;
                 }
@@ -411,6 +426,8 @@ namespace EncodingLib.Nbt
 
         public sealed class IntArray : Tag
         {
+            internal const int Id = 11;
+            
             public int[] Value { get; set; }
             
             public static implicit operator int[](IntArray tag) => tag.Value;
@@ -425,7 +442,7 @@ namespace EncodingLib.Nbt
                 Value = val;
             }
 
-            internal override TypeID ID => TypeID.IntArray;
+            internal override byte ID => Id;
 
             internal override void Write(PrimitiveWriter writer)
             {

@@ -6,14 +6,17 @@ using Newtonsoft.Json.Linq;
 
 namespace Quartz.Text.Chat
 {
+    /// <summary>
+    /// A chat component. All members of this class (Not including subclasses) can be null.
+    /// </summary>
     public abstract class ChatComponent
     {
         [JsonProperty("bold", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool? Bold { get; set; }
-
+        
         [JsonProperty("italic", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool? Italic { get; set; }
-
+        
         [JsonProperty("underlined", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool? Underlined { get; set; }
 

@@ -6,6 +6,9 @@ using Quartz.Proto;
 
 namespace Quartz.Text.Chat
 {
+    /// <summary>
+    /// Represents the root of a chat.
+    /// </summary>
     [JsonConverter(typeof(Converter))]
     public sealed class ChatRoot
     {
@@ -45,12 +48,12 @@ namespace Quartz.Text.Chat
     {
         public static void WriteChatRootProto(this PrimitiveWriter writer, ChatRoot chatRoot)
         {
-            writer.WriteString(JsonConvert.SerializeObject(chatRoot));
+            writer.WriteStringProto(JsonConvert.SerializeObject(chatRoot));
         }
 
         public static ChatRoot ReadChatRootProto(this PrimitiveReader reader)
         {
-            return JsonConvert.DeserializeObject<ChatRoot>(reader.ReadString());
+            return JsonConvert.DeserializeObject<ChatRoot>(reader.ReadStringProto(ProtoConsts.MaxStringChars));
         }
     }
 }

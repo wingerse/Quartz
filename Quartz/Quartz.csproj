@@ -11,4 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EncodingLib\EncodingLib.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Proto\Play\Client" />
+  </ItemGroup>
 </Project>
