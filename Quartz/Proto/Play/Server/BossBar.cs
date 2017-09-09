@@ -4,16 +4,16 @@ using Quartz.Text.Chat;
 
 namespace Quartz.Proto.Play.Server
 {
-    public sealed class BossBar : IOutPacket
+    public sealed class BossBar : OutPacket
     {
         public const int IdConst = 0x0c;
 
         public Bossbar Bossbar { get; set; }
         public ActionEnum Action { get; set; }
 
-        public int Id => IdConst;
+        public override int Id => IdConst;
 
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteUuidProto(Bossbar.Uuid);
             writer.WriteVarint((int)Action);

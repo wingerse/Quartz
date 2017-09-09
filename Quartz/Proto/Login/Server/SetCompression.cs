@@ -2,15 +2,15 @@
 
 namespace Quartz.Proto.Login.Server
 {
-    public sealed class SetCompression : IOutPacket
+    public sealed class SetCompression : OutPacket
     {
-        public const int Id = 3;
+        public const int IdConst = 3;
         
         public int Threshold { get; set; }
 
-        public int GetId() => Id;
+        public override int Id => IdConst;
 
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteVarint(Threshold);
         }

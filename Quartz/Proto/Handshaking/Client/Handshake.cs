@@ -2,7 +2,7 @@
 
 namespace Quartz.Proto.Handshaking.Client
 {
-    public sealed class Handshake : IInPacket
+    public sealed class Handshake : InPacket
     {
         public const int Id = 0;
         
@@ -11,7 +11,7 @@ namespace Quartz.Proto.Handshaking.Client
         public ushort ServerPort { get; set; }
         public NextStateEnum NextState { get; set; }
         
-        public void Read(PrimitiveReader reader)
+        public override void Read(PrimitiveReader reader)
         {
             ProtocolVersion = reader.ReadVarint();
             ServerAddress = reader.ReadStringProto(255);

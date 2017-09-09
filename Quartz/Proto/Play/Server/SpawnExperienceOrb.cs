@@ -2,7 +2,7 @@
 
 namespace Quartz.Proto.Play.Server
 {
-    public sealed class SpawnExperienceOrb : IOutPacket
+    public sealed class SpawnExperienceOrb : OutPacket
     {
         public const int IdConst = 0x01;
 
@@ -12,9 +12,9 @@ namespace Quartz.Proto.Play.Server
         public double Z { get; set; }
         public short Count { get; set; }
         
-        public int Id => IdConst;
+        public override int Id => IdConst;
 
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteVarint(EntityId);
             writer.WriteDouble(X);

@@ -3,7 +3,7 @@ using Quartz.World;
 
 namespace Quartz.Proto.Play.Server
 {
-    public sealed class BlockBreakAnimation : IOutPacket
+    public sealed class BlockBreakAnimation : OutPacket
     {
         public const int IdConst = 0x08;
 
@@ -11,9 +11,9 @@ namespace Quartz.Proto.Play.Server
         public BlockPos Location { get; set; }
         public byte DestroyStage { get; set; }
         
-        public int Id => IdConst;
+        public override int Id => IdConst;
         
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteVarint(EntityId);
             writer.WriteBlockPosProto(Location);

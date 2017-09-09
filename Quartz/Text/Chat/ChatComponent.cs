@@ -13,10 +13,10 @@ namespace Quartz.Text.Chat
     {
         [JsonProperty("bold", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool? Bold { get; set; }
-        
+
         [JsonProperty("italic", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool? Italic { get; set; }
-        
+
         [JsonProperty("underlined", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool? Underlined { get; set; }
 
@@ -42,6 +42,10 @@ namespace Quartz.Text.Chat
         public List<ChatComponent> Extra { get; set; }
 
         private bool ShouldSerializeExtra() => Extra != null && Extra.Count != 0;
+        
+        internal ChatComponent()
+        {
+        }
 
         public sealed class Converter : JsonConverter
         {
@@ -60,7 +64,7 @@ namespace Quartz.Text.Chat
                         first.Extra = list;
                         return first;
                     case JObject x:
-                        var dic = (IDictionary<string, JToken>) x;
+                        var dic = (IDictionary<string, JToken>)x;
                         if (dic.ContainsKey("text")) return x.ToObject<StringComponent>(serializer);
                         else if (dic.ContainsKey("translate")) return x.ToObject<TranslationComponent>(serializer);
                         else if (dic.ContainsKey("keybind")) return x.ToObject<KeybindComponent>(serializer);
@@ -91,7 +95,7 @@ namespace Quartz.Text.Chat
         {
             Text = text;
         }
-        
+
         /// <summary>
         /// Parses a legacy minecraft string into a StringComponent.
         /// Invalid codes are turned into regular text.
@@ -120,7 +124,7 @@ namespace Quartz.Text.Chat
                     root.Extra.Add(lastColorComponent);
                 }
             }
-            
+
             var tokenizer = new Tokenizer(legacy, controlChar);
             foreach (var token in tokenizer)
             {
@@ -141,7 +145,7 @@ namespace Quartz.Text.Chat
                                 foreach (var code in codes.Skip(1))
                                 {
                                     SetFormattingStyle(lastColorComponent, code);
-                                } 
+                                }
                             }
                             lastComponent = lastColorComponent;
                         }
@@ -198,7 +202,7 @@ namespace Quartz.Text.Chat
                     break;
             }
         }
-        
+
         private static ChatColor ColorCodeToChatColor(Code color)
         {
             switch (color)

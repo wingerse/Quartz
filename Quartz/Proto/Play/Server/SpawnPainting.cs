@@ -4,7 +4,7 @@ using Quartz.World;
 
 namespace Quartz.Proto.Play.Server
 {
-    public sealed class SpawnPainting : IOutPacket
+    public sealed class SpawnPainting : OutPacket
     {
         public const int IdConst = 0x04;
         
@@ -14,9 +14,9 @@ namespace Quartz.Proto.Play.Server
         public BlockPos Location { get; set; }
         public DirectionEnum Direction { get; set; }
         
-        public int Id => IdConst;
+        public override int Id => IdConst;
         
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteVarint(EntityId);
             writer.WriteUuidProto(Uuid);

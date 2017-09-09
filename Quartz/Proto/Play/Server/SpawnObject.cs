@@ -3,7 +3,7 @@ using EncodingLib;
 
 namespace Quartz.Proto.Play.Server
 {
-    public sealed class SpawnObject : IOutPacket
+    public sealed class SpawnObject : OutPacket
     {
         public const int IdConst = 0x00;
 
@@ -20,9 +20,9 @@ namespace Quartz.Proto.Play.Server
         public short VelocityY { get; set; }
         public short VelocityZ { get; set; }
 
-        public int Id => IdConst;
+        public override int Id => IdConst;
 
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteVarint(EntityId);
             writer.WriteUuidProto(Uuid);

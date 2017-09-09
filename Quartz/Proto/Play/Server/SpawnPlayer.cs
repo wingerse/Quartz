@@ -4,7 +4,7 @@ using Quartz.Entity;
 
 namespace Quartz.Proto.Play.Server
 {
-    public sealed class SpawnPlayer : IOutPacket
+    public sealed class SpawnPlayer : OutPacket
     {
         public const int IdConst = 0x05;
 
@@ -17,9 +17,9 @@ namespace Quartz.Proto.Play.Server
         public double Pitch { get; set; }
         public EntityMetadata Metadata { get; set; }
         
-        public int Id => IdConst;
+        public override int Id => IdConst;
         
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteVarint(EntityId);
             writer.WriteUuidProto(Uuid);

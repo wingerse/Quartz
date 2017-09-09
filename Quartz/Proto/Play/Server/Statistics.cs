@@ -2,15 +2,15 @@
 
 namespace Quartz.Proto.Play.Server
 {
-    public sealed class Statistics : IOutPacket
+    public sealed class Statistics : OutPacket
     {
         public const int IdConst = 0x07;
 
         public (string name, int value)[] StatisticsArray { get; set; }
         
-        public int Id => IdConst;
+        public override int Id => IdConst;
         
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteVarint(StatisticsArray.Length);
             foreach (var s in StatisticsArray)

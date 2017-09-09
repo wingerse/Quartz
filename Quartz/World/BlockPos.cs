@@ -16,6 +16,13 @@ namespace Quartz.World
             Y = y;
             Z = z;
         }
+
+        public BlockPos(ChunkPos chunkPos, int y)
+        {
+            X = chunkPos.X * 16;
+            Y = y;
+            Z = chunkPos.Z * 16;
+        }
     }
 
     public static class BlockPosEx
@@ -35,6 +42,20 @@ namespace Quartz.World
             var y = (int)(l << 26 >> 38);
             var z = (int)l << 6 >> 6;
             return new BlockPos(x, y, z);
+        }
+    }
+
+    public struct BlockPosInChunk
+    {
+        public byte X { get; }
+        public byte Y { get; }
+        public byte Z { get; }
+        
+        public BlockPosInChunk(byte x, byte y, byte z)
+        {
+            X = (byte)(x & 0xf);
+            Y = y;
+            Z = (byte)(z & 0xf);
         }
     }
 }

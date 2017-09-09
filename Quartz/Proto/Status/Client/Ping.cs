@@ -2,13 +2,13 @@
 
 namespace Quartz.Proto.Status.Client
 {
-    public sealed class Ping : IInPacket
+    public sealed class Ping : InPacket
     {
         public const int Id = 0x01;
         
         public long Payload { get; set; }
         
-        public void Read(PrimitiveReader reader)
+        public override void Read(PrimitiveReader reader)
         {
             Payload = reader.ReadLong();
         }

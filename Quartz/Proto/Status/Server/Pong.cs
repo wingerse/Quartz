@@ -2,15 +2,15 @@
 
 namespace Quartz.Proto.Status.Server
 {
-    public sealed class Pong : IOutPacket
+    public sealed class Pong : OutPacket
     {
-        public const int Id = 0x01;
+        public const int IdConst = 0x01;
         
         public long Payload { get; set; }
 
-        public int GetId() => Id;
+        public override int Id => IdConst;
 
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             writer.WriteLong(Payload);
         }

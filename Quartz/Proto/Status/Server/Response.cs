@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using EncodingLib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -9,9 +7,9 @@ using Quartz.Text.Chat;
 
 namespace Quartz.Proto.Status.Server
 {
-    public sealed class Response : IOutPacket
+    public sealed class Response : OutPacket
     {
-        public const int Id = 0x00;
+        public const int IdConst = 0x00;
 
         public string VersionName { get; set; }
         public int VersionProtocol { get; set; }
@@ -22,9 +20,9 @@ namespace Quartz.Proto.Status.Server
         public IEnumerable<Player> PlayerSample { get; set; }
         public string Favicon { get; set; }
 
-        public int GetId() => Id;
+        public override int Id => IdConst;
 
-        public void Write(PrimitiveWriter writer)
+        public override void Write(PrimitiveWriter writer)
         {
             var o = new JObject(
                 new JProperty("version",
