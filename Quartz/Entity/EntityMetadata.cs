@@ -138,7 +138,7 @@ namespace Quartz.Entity
                 public BlockStateId Value { get; set; }
                 public OptBlockId(BlockStateId value) => Value = value;
                 public override byte Type => 12;
-                public override void Write(PrimitiveWriter writer) => writer.WriteVarint(Value.Short);
+                public override void Write(PrimitiveWriter writer) => writer.WriteVarint(Value.ToShort());
             }
 
             public sealed class NbtTag : Entry

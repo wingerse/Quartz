@@ -13,7 +13,7 @@ namespace Quartz.Utils
         public VarBitArray(int length, byte bitSize)
         {
             var bits = bitSize * length;
-            Backing = new ulong[(int) Math.Ceiling(bits / 64d)];
+            Backing = new ulong[(int) System.Math.Ceiling(bits / 64d)];
             Length = length;
             BitSize = bitSize;
             _mask = (ulong) (1 << bitSize) - 1;

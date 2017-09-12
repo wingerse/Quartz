@@ -44,18 +44,4 @@ namespace Quartz.World
             return new BlockPos(x, y, z);
         }
     }
-
-    public struct BlockPosInChunk
-    {
-        public byte X { get; }
-        public byte Y { get; }
-        public byte Z { get; }
-        
-        public BlockPosInChunk(byte x, byte y, byte z)
-        {
-            X = (byte)(x & 0xf);
-            Y = y;
-            Z = (byte)(z & 0xf);
-        }
-    }
 }

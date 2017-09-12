@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using EncodingLib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -41,7 +42,7 @@ namespace Quartz.Proto.Status.Server
             );
             if (PlayerSample != null)
             {
-                ((JObject)o["players"]).Add("sample", JArray.FromObject(PlayerSample));
+                ((JObject)o["players"]).Add("sample", new JArray(PlayerSample.Select(p => new {name = p.Profile.Name, id = p.Profile.Id.ToString()})));
             }
             if (Favicon != null)
             {

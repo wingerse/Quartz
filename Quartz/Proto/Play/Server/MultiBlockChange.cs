@@ -23,13 +23,13 @@ namespace Quartz.Proto.Play.Server
             {
                 writer.WriteByte((byte)(r.BlockPosInChunk.X << 4 | r.BlockPosInChunk.Z));
                 writer.WriteByte(r.BlockPosInChunk.Y);
-                writer.WriteVarint(r.BlockStateId.Short);
+                writer.WriteVarint(r.BlockStateId.ToShort());
             }
         }
 
         public class Record
         {
-            public BlockPosInChunk BlockPosInChunk { get; set; }
+            public Chunk.BlockPos BlockPosInChunk { get; set; }
             public BlockStateId BlockStateId { get; set; }
         }
     }
