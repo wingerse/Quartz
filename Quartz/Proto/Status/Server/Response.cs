@@ -10,7 +10,7 @@ namespace Quartz.Proto.Status.Server
 {
     public sealed class Response : OutPacket
     {
-        public const int IdConst = 0x00;
+        
 
         public string VersionName { get; set; }
         public int VersionProtocol { get; set; }

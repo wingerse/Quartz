@@ -12,9 +12,9 @@ namespace EncodingLib
     {
         private readonly BinaryWriter _binaryWriter;
         private readonly byte[] _buf = new byte[Varint.MaxVarlongLen];
-        public Stream BaseStream { get; }
+        public MemoryStream BaseStream { get; }
         
-        public PrimitiveWriter(Stream stream)
+        public PrimitiveWriter(MemoryStream stream)
         {
             _binaryWriter = new BinaryWriter(stream, System.Text.Encoding.UTF8, true);
             BaseStream = stream;

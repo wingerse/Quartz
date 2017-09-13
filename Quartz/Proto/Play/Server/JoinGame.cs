@@ -5,8 +5,6 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class JoinGame : OutPacket
     {
-        public const int IdConst = 0x23;
-
         public int EntityId { get; set; }
         public Gamemode Gamemode { get; set; }
         public bool IsHardcore { get; set; }
@@ -16,8 +14,6 @@ namespace Quartz.Proto.Play.Server
         public LevelType LevelType { get; set; }
         public bool ReducedDebugInfo { get; set; }
         
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

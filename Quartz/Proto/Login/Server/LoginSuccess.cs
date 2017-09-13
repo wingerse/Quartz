@@ -5,7 +5,7 @@ namespace Quartz.Proto.Login.Server
 {
     public sealed class LoginSuccess : OutPacket
     {
-        public const int IdConst = 2;
+        
 
         public Guid Uuid { get; set; }
         public string Username { get; set; }

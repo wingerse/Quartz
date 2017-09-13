@@ -7,14 +7,10 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class Explosion : OutPacket
     {
-        public const int IdConst = 0x1c;
-
         public Vec3 Location { get; set; }
         public float Radius { get; set; }
         public List<BlockPos> Records { get; set; }
         public Vec3 PlayerVelocity { get; set; }
-
-        public override int Id => IdConst;
 
         public override void Write(PrimitiveWriter writer)
         {

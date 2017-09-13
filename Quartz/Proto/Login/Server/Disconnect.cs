@@ -5,7 +5,7 @@ namespace Quartz.Proto.Login.Server
 {
     public sealed class Disconnect : OutPacket
     {
-        public const int IdConst = 0;
+        
         
         public ChatRoot Reason { get; set; }
         

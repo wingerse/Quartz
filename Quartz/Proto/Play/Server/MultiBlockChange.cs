@@ -7,12 +7,8 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class MultiBlockChange : OutPacket
     {
-        public const int IdConst = 0x10;
-
         public ChunkPos ChunkPos { get; set; }
         public List<Record> Records { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

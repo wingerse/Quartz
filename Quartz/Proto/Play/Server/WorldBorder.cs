@@ -4,12 +4,8 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class WorldBorder : OutPacket
     {
-        public const int IdConst = 0x38;
-	
 		public World.WorldBorder Border { get; set; }
 	    public ActionEnum Action { get; set; }
-	
-        public override int Id => IdConst;
 	
         public override void Write(PrimitiveWriter writer)
         {

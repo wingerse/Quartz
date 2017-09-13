@@ -4,12 +4,13 @@ namespace Quartz.Proto
 {
     public abstract class InPacket
     {
+        internal InPacket() {}
         public abstract void Read(PrimitiveReader reader);
     }
-    
+
     public abstract class OutPacket
     {
-        public abstract int Id { get; }
+        internal OutPacket() {}
         public abstract void Write(PrimitiveWriter writer);
     }
 }

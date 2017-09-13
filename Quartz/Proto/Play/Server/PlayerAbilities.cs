@@ -4,16 +4,12 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class PlayerAbilities : OutPacket
     {
-        public const int IdConst = 0x2c;
-
         public bool Invulnerable { get; set; }
         public bool Flying { get; set; }
         public bool AllowFlying { get; set; }
         public bool CreativeMode { get; set; }
         public float FlyingSpeed { get; set; }
         public float FieldOfView { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

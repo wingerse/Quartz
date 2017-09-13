@@ -6,13 +6,9 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class UpdateBlockEntity : OutPacket
     {
-        public const int IdConst = 0x09;
-
         public BlockPos Location { get; set; }
         public byte Action { get; set; }
         public NbtBlob NbtData { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

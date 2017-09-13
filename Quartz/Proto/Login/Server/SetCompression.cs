@@ -4,7 +4,7 @@ namespace Quartz.Proto.Login.Server
 {
     public sealed class SetCompression : OutPacket
     {
-        public const int IdConst = 3;
+        
         
         public int Threshold { get; set; }
 

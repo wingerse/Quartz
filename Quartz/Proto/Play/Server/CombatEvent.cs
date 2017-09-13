@@ -5,11 +5,7 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class CombatEvent : OutPacket
     {
-        public const int IdConst = 0x2d;
-
         public EventEnum Event { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

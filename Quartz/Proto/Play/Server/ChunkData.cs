@@ -5,15 +5,11 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class ChunkData : OutPacket
     {
-        public const int IdConst = 0x20;
-
         public ChunkPos Coordinates { get; set; }
         public bool IsNew { get; set; }
         public ushort BitMask { get; set; }
         public byte[] Data { get; set; }
         // TODO: Block entities
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

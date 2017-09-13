@@ -4,8 +4,6 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class Map : OutPacket
     {
-        public const int IdConst = 0x24;
-
         public int MapId { get; set; }
         public byte Scale { get; set; }
         public bool ShowIcons { get; set; }
@@ -15,8 +13,6 @@ namespace Quartz.Proto.Play.Server
         public byte X { get; set; }
         public byte Z { get; set; }
         public byte[] Data { get; set; }
-            
-        public override int Id => IdConst;
 
         public override void Write(PrimitiveWriter writer)
         {

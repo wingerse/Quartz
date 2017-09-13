@@ -4,7 +4,7 @@ namespace Quartz.Proto.Status.Server
 {
     public sealed class Pong : OutPacket
     {
-        public const int IdConst = 0x01;
+        
         
         public long Payload { get; set; }
 

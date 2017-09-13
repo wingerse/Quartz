@@ -4,12 +4,10 @@ namespace Quartz.Proto.Handshaking.Client
 {
     public sealed class Handshake : InPacket
     {
-        public const int Id = 0;
-        
-        public int ProtocolVersion { get; set; }
-        public string ServerAddress { get; set; }
-        public ushort ServerPort { get; set; }
-        public NextStateEnum NextState { get; set; }
+        public int ProtocolVersion { get; private set; }
+        public string ServerAddress { get; private set; }
+        public ushort ServerPort { get; private set; }
+        public NextStateEnum NextState { get; private set; }
         
         public override void Read(PrimitiveReader reader)
         {

@@ -5,8 +5,6 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class UnlockRecipes : OutPacket
     {
-        public const int IdConst = 0x31;
-        
         public ActionEnum Action { get; set; }
         public bool CraftingBookOpen { get; set; }
         public bool FilteringCraftable { get; set; }
@@ -16,8 +14,6 @@ namespace Quartz.Proto.Play.Server
         /// Only present when Action == Init.
         /// </summary>
         public List<int> RecipeIds2 { get; set; }
-
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

@@ -7,12 +7,8 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class PlayerListItem : OutPacket
     {
-        public const int IdConst = 0x2e;
-
         public ActionEnum Action { get; set; }
         public List<Player> Players { get; set; }
-
-        public override int Id => IdConst;
 
         public override void Write(PrimitiveWriter writer)
         {

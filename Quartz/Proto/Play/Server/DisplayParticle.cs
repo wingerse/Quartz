@@ -5,8 +5,6 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class DisplayParticle : OutPacket
     {
-        public const int IdConst = 0x22;
-
         public Particle Particle { get; set; }
         public bool LongDistance { get; set; }
         public Vec3 Position { get; set; }
@@ -19,8 +17,6 @@ namespace Quartz.Proto.Play.Server
         /// This can be null for other particles.
         /// </summary>
         public int[] Data { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

@@ -6,15 +6,11 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class PlayerPositionAndLook : OutPacket
     {
-        public const int IdConst = 0x2f;
-
         public Vec3 Position { get; set; }
         public float Yaw { get; set; }
         public float Pitch { get; set; }
         public FlagsEnum Flags { get; set; }
         public int TeleportId { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

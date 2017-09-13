@@ -6,15 +6,11 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class SpawnPainting : OutPacket
     {
-        public const int IdConst = 0x04;
-        
         public int EntityId { get; set; }
         public Guid Uuid { get; set; }
         public Painting Painting { get; set; }
         public BlockPos Location { get; set; }
         public DirectionEnum Direction { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

@@ -6,8 +6,6 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class SpawnPlayer : OutPacket
     {
-        public const int IdConst = 0x05;
-
         public int EntityId { get; set; }
         public Guid Uuid { get; set; }
         public double X { get; set; }
@@ -16,8 +14,6 @@ namespace Quartz.Proto.Play.Server
         public double Yaw { get; set; }
         public double Pitch { get; set; }
         public EntityMetadata Metadata { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

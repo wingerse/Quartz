@@ -6,15 +6,11 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class NamedSoundEffect : OutPacket
     {
-        public const int IdConst = 0x19;
-
         public string Name { get; set; }
         public SoundCategory Category { get; set; }
         public Vec3 Position { get; set; }
         public float Volume { get; set; }
         public float Pitch { get; set; }
-        
-        public override int Id => IdConst;
         
         public override void Write(PrimitiveWriter writer)
         {

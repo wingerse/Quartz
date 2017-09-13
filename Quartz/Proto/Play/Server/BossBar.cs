@@ -6,12 +6,8 @@ namespace Quartz.Proto.Play.Server
 {
     public sealed class BossBar : OutPacket
     {
-        public const int IdConst = 0x0c;
-
         public Bossbar Bossbar { get; set; }
         public ActionEnum Action { get; set; }
-
-        public override int Id => IdConst;
 
         public override void Write(PrimitiveWriter writer)
         {
