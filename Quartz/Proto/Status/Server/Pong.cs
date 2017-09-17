@@ -4,11 +4,7 @@ namespace Quartz.Proto.Status.Server
 {
     public sealed class Pong : OutPacket
     {
-        
-        
         public long Payload { get; set; }
-
-        public override int Id => IdConst;
 
         public override void Write(PrimitiveWriter writer)
         {

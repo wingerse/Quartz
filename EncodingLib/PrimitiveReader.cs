@@ -11,9 +11,9 @@ namespace EncodingLib
     public sealed class PrimitiveReader
     {
         private readonly BinaryReader _binaryReader;
-        public MemoryStream BaseStream { get; }
+        public Stream BaseStream { get; }
 
-        public PrimitiveReader(MemoryStream stream)
+        public PrimitiveReader(Stream stream)
         {
             _binaryReader = new BinaryReader(stream, System.Text.Encoding.UTF8, true);
             BaseStream = stream;

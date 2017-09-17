@@ -15,7 +15,7 @@ namespace Quartz.Proto.Handshaking.Client
             ServerAddress = reader.ReadStringProto(255);
             ServerPort = reader.ReadUShort();
             NextState = (NextStateEnum)reader.ReadVarint();
-            if (NextState != NextStateEnum.Status || NextState != NextStateEnum.Login)
+            if (NextState != NextStateEnum.Status && NextState != NextStateEnum.Login)
                 throw new InvalidPacketException(nameof(NextState), NextState);
         }
 

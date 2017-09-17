@@ -20,7 +20,7 @@ namespace Quartz.Proto.Play.Server
                     writer.WriteFloat(Bossbar.Health);
                     writer.WriteVarint((int)Bossbar.Color);
                     writer.WriteVarint((int)Bossbar.Division);
-                    byte x;
+                    byte x = 0;
                     if (Bossbar.ShouldDarkenSky) x |= 0x1;
                     if (Bossbar.IsDragonBar) x |= 0x02;
                     writer.WriteByte(x);
@@ -38,7 +38,7 @@ namespace Quartz.Proto.Play.Server
                     writer.WriteVarint((int)Bossbar.Division);
                     break;
                 case ActionEnum.UpdateFlags:
-                    byte z;
+                    byte z = 0;
                     if (Bossbar.ShouldDarkenSky) z |= 0x1;
                     if (Bossbar.IsDragonBar) z |= 0x02;
                     writer.WriteByte(z);

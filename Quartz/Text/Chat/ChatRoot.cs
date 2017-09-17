@@ -42,13 +42,18 @@ namespace Quartz.Text.Chat
 
             public override bool CanConvert(Type objectType) => objectType == typeof(ChatRoot);
         }
+
+        /// <summary>
+        /// Returns the Json representation of this ChatRoot.
+        /// </summary>
+        public override string ToString() => JsonConvert.SerializeObject(this);
     }
 
     public static class ChatRootEx
     {
         public static void WriteChatRootProto(this PrimitiveWriter writer, ChatRoot chatRoot)
         {
-            writer.WriteStringProto(JsonConvert.SerializeObject(chatRoot));
+            writer.WriteStringProto(chatRoot.ToString());
         }
 
         public static ChatRoot ReadChatRootProto(this PrimitiveReader reader)

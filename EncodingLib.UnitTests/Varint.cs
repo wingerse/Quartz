@@ -29,5 +29,13 @@ namespace EncodingLib.UnitTests
             Varint.PutVarlong(buf, -12937480389237438);
             Assert.Throws(typeof(EncodingException), () => Varint.GetVarint(buf));
         }
+
+        [Fact]
+        public void PutGivesCorrectOutput()
+        {
+            var buf = new byte[Varint.MaxVarintLen];
+            var n = Varint.PutVarint(buf, 127);
+            Assert.Equal(1, n);
+        }
     }
 }

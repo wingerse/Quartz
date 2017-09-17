@@ -18,7 +18,7 @@ namespace Quartz.Proto.Play.Server
         public short VelocityX { get; set; }
         public short VelocityY { get; set; }
         public short VelocityZ { get; set; }
-        public EntityMetadata Metadata { get; set; }
+        public Quartz.Entity.EntityMetadata Metadata { get; set; }
 
         public override void Write(PrimitiveWriter writer)
         {

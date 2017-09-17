@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EncodingLib;
 using Newtonsoft.Json;
@@ -10,8 +11,6 @@ namespace Quartz.Proto.Status.Server
 {
     public sealed class Response : OutPacket
     {
-        
-
         public string VersionName { get; set; }
         public int VersionProtocol { get; set; }
         public ChatRoot Description { get; set; }
@@ -20,8 +19,6 @@ namespace Quartz.Proto.Status.Server
         
         public IEnumerable<Player> PlayerSample { get; set; }
         public string Favicon { get; set; }
-
-        public override int Id => IdConst;
 
         public override void Write(PrimitiveWriter writer)
         {
@@ -38,7 +35,7 @@ namespace Quartz.Proto.Status.Server
                         new JProperty("online", OnlinePlayers)
                     )
                 ),
-                new JProperty("description", Description)
+                new JProperty("description", JObject.FromObject(Description))
             );
             if (PlayerSample != null)
             {

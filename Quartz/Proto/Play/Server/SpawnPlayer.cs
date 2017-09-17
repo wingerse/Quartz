@@ -13,7 +13,7 @@ namespace Quartz.Proto.Play.Server
         public double Z { get; set; }
         public double Yaw { get; set; }
         public double Pitch { get; set; }
-        public EntityMetadata Metadata { get; set; }
+        public Quartz.Entity.EntityMetadata Metadata { get; set; }
         
         public override void Write(PrimitiveWriter writer)
         {

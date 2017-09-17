@@ -17,7 +17,7 @@ namespace Quartz.Proto.Play.Server
             writer.WriteByte(Effect.Id);
             writer.WriteByte(Amplifier);
             writer.WriteVarint(Duration);
-            byte x;
+            byte x = 0;
             if (IsAmbient) x |= 0x01;
             if (ShowParticles) x |= 0x02;
             writer.WriteByte(x);

@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 
 namespace EncodingLib
 {
@@ -78,6 +79,30 @@ namespace EncodingLib
             return (int)x;
         }
 
+        public static async ValueTask<int> ReadVarintAsync(BufferedOutputStream stream)
+        {
+            uint x = 0;
+            var i = 0;
+
+            while (true)
+            {
+                var b = await stream.ReadByteAsync();
+                x |= (uint)(b & 0x7f) << (i * 7);
+                i++;
+                // msb not set
+                if ((b & 0x80) == 0)
+                {
+                    break;
+                }
+
+                if (i >= MaxVarintLen)
+                {
+                    throw new EncodingException($"Varint longer than {MaxVarintLen} bytes.");
+                }
+            }
+            return (int)x;
+        }
+        
         /// <summary>
         /// Encodes <paramref name="l"/> as a varlong into <paramref name="buf"/>.
         /// <paramref name="buf"/>'s Length should be at least <see cref="MaxVarlongLen"/>

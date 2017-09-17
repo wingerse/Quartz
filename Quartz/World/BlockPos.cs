@@ -29,9 +29,9 @@ namespace Quartz.World
     {
         public static void WriteBlockPosProto(this PrimitiveWriter writer, BlockPos blockPos)
         {
-            var x = (ulong)(blockPos.X & 0x3ffffff) << 38;
-            x |= (ulong)(blockPos.Y & 0xfff) << 26;
-            x |= (ulong)(blockPos.Z & 0x3ffffff);
+            var x = ((ulong)(uint)blockPos.X & 0x3ffffff) << 38;
+            x |= ((ulong)(uint)blockPos.Y & 0xfff) << 26;
+            x |= (ulong)(uint)blockPos.Z & 0x3ffffff;
             writer.WriteLong((long)x);
         }
 

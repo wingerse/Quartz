@@ -13,7 +13,7 @@ namespace Quartz.Proto.Play.Server
         
         public override void Write(PrimitiveWriter writer)
         {
-            byte x;
+            byte x = 0;
             if (Invulnerable) x |= 0x01;
             if (Flying) x |= 0x02;
             if (AllowFlying) x |= 0x03;
